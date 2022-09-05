@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fitnesstracker.backend.model.Activity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ActivityService {
 
@@ -13,6 +15,10 @@ public class ActivityService {
 
     public Activity saveActivity(Activity activity) {
         return activityRepository.save(activity);
+    }
+
+    public List<Activity> getAll() {
+        return activityRepository.findAll();
     }
 
 }
