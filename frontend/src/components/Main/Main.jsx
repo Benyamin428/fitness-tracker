@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Form from "../Form/Form";
 
 const Activity = () => {
 
     const [message, setMessage] = useState("");
+    const [activities, setActivities] = useState([]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,10 +28,36 @@ const Activity = () => {
         }
     }
 
+    const fetchData = async() => {
+        try {
+            const res = await fetch("http://localhost:8080/getAllActivities");
+            if (res.ok) {
+                setActivities(await res.json());
+            }
+        } catch (error) {
+            console.log(error);
+        }   
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    console.log(activities)
+
     return(
         <>
             {message}
             <Form handleSubmit={handleSubmit} />
+            {activities.map(activity => {
+                return (
+                <div key={activity.id}>
+                    <p>Activity: {activity.activity}</p>
+                    <p>Details: {activity.details}</p>
+                    <p>Notes: {activity.notes}</p>
+                </div>
+                )
+            })}
         </>
     );
 }
