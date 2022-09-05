@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Form from "../Form/Form";
+import "./Main.scss";
 
 const Activity = () => {
 
@@ -43,15 +44,13 @@ const Activity = () => {
         fetchData();
     }, [])
 
-    console.log(activities)
-
     return(
         <>
             {message}
             <Form handleSubmit={handleSubmit} />
             {activities.map(activity => {
                 return (
-                <div key={activity.id}>
+                <div className="activity" key={activity.id}>
                     <p>Activity: {activity.activity}</p>
                     <p>Details: {activity.details}</p>
                     <p>Notes: {activity.notes}</p>

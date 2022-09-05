@@ -1,9 +1,17 @@
+import "./Form.scss";
+
 const Form = ({handleSubmit}) => {
     return(
-        <form onSubmit={handleSubmit}>
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
+        <form className="form" onSubmit={handleSubmit}>
+            <label>Activity: </label>
+            <input className="form__input" type="text" />
+            <br />
+            <label>Details: </label>
+            <input className="form__input" type="text" />
+            <br />
+            <label>Notes: </label>
+            <input className="form__input" type="text" />
+            <br />
             <button>Submit</button>
         </form>
     );
