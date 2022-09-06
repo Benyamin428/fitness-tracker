@@ -21,4 +21,15 @@ public class ActivityService {
         return activityRepository.findAll();
     }
 
+    public boolean deleteById(int id) {
+        Activity activityToDelete = activityRepository.findById(id).orElse(null);
+
+        if (activityToDelete == null) {
+            return false;
+        }
+
+        activityRepository.delete(activityToDelete);
+        return true;
+    }
+
 }
