@@ -1,19 +1,16 @@
+import Button from "../Button/Button";
 import "./Form.scss";
 
-const Form = ({handleSubmit, editable, isEditable, activity}) => {
+const Form = ({handleSubmit, activityRef, detailsRef, notesRef}) => {
     return(
-        <form className="form" onSubmit={editable ? event => handleSubmit(event, activity.id) : handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <label>Activity: </label>
-            <input className="form__input" type="text" defaultValue={editable && activity.activity} required/>
-            <br />
+            <input className="form__input" ref={activityRef} type="text" required/>
             <label>Details: </label>
-            <input className="form__input" type="text" defaultValue={editable && activity.details} required/>
-            <br />
+            <input className="form__input" ref={detailsRef} type="text" required/>
             <label>Notes: </label>
-            <input className="form__input" type="text" defaultValue={editable && activity.notes}/>
-            <br />
-            {editable && <button onClick={() => isEditable(false)}>Back</button>}
-            <button>Submit</button>
+            <input className="form__input" ref={notesRef} type="text"/>
+            <Button name="Add Activity" />
         </form>
     );
 }
