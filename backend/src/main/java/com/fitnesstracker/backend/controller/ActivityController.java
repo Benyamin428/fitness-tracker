@@ -29,6 +29,17 @@ public class ActivityController {
         return activityService.getAll();
     }
 
+    @PutMapping("/activities/{id}")
+    public  ResponseEntity<?> updateActivity(@RequestBody Activity newActivity, @PathVariable String id) {
+        boolean isUpdated = activityService.updateById(newActivity, parseInt(id));
+
+        if (isUpdated == false) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find an activity to update with that id");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body("Activity updated successfully");
+    }
+
     @DeleteMapping("/activity/{id}")
     public ResponseEntity<?> deleteActivity(@PathVariable String id) {
         boolean isDeleted = activityService.deleteById(parseInt(id));

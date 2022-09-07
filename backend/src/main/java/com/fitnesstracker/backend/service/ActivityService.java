@@ -21,6 +21,21 @@ public class ActivityService {
         return activityRepository.findAll();
     }
 
+    public boolean updateById(Activity newActivity, int id) {
+        Activity activityToUpdate = activityRepository.findById(id).orElse(null);
+
+        if (activityToUpdate == null) {
+            return false;
+        }
+
+        activityToUpdate.setActivity(newActivity.getActivity());
+        activityToUpdate.setDetails(newActivity.getDetails());
+        activityToUpdate.setNotes(newActivity.getNotes());
+
+        activityRepository.save(activityToUpdate);
+        return true;
+    }
+
     public boolean deleteById(int id) {
         Activity activityToDelete = activityRepository.findById(id).orElse(null);
 
