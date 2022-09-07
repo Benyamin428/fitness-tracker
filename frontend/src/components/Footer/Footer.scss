@@ -1,0 +1,11 @@
+@use "./../../styling/variables" as *;
+
+.footer {
+    position: fixed;
+    bottom:0;
+    background: $primary-color;
+    width: 100%;
+    padding: 1rem;
+    color: #fff;
+    text-align: center;
+}

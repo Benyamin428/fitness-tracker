@@ -1,0 +1,8 @@
+@use "./../../styling/variables" as *;
+
+.navbar {
+    width: 100%;
+    background: $primary-color;
+    padding: 1.5rem;
+    color: #fff;
+}

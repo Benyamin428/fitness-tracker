@@ -5,16 +5,11 @@ import "./Main.scss";
 
 const Main = () => {
 
-    const [message, setMessage] = useState("");
     const [activities, setActivities] = useState([]);
 
     const activityRef = useRef(null);
     const detailsRef = useRef(null);
     const notesRef = useRef(null);
-
-    // const [activity, setActivity] = useState("");
-    // const [details, setDetails] = useState("");
-    // const [notes, setNotes] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -28,12 +23,9 @@ const Main = () => {
                 "notes": notesRef.current.value})
             })
             if (res.ok) {
-                setMessage("Activity successfully added");
                 fetchData();
             }
-            else {
-                setMessage("Activity was unable to be added");
-            }
+
         } catch (error) {
             console.log(error);
         }
@@ -65,11 +57,7 @@ const Main = () => {
                 "notes": notesRef.current.value})
             })
             if (res.ok) {
-                setMessage("Activity successfully updated");
                 fetchData();
-            }
-            else {
-                setMessage("Activity was unable to be updated");
             }
         } catch (error) {
             console.log(error);
@@ -82,11 +70,7 @@ const Main = () => {
                 method: "DELETE",
             })
             if (res.ok) {
-                setMessage("Activity deleted");
                 fetchData();
-            }
-            else {
-                setMessage("Activity was unable to be deleted");
             }
         } catch (error) {
             console.log(error);
@@ -95,17 +79,19 @@ const Main = () => {
 
     return(
         <div className="container">
-            {message}
             <Form 
             handleSubmit={handleSubmit}
             activityRef={activityRef}
             detailsRef={detailsRef}
             notesRef={notesRef}
             />
-            <table className = "table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Activity</th>
+
+            <h2 className="title">List of Activities</h2>
+
+            <table className="table">
+                <thead className="table__thead">
+                    <tr className="table__tr">
+                        <th className="table__th">Activity</th>
                         <th>Details</th>
                         <th>Notes</th>
                         <th>Actions</th>
